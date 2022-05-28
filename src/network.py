@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from colorama import Fore, Back, Style
+import random
 import requests
 import time
 import datetime
@@ -61,7 +62,9 @@ def toot(urls, title, mastodon, fetched_user ):
         ids = []
         for url in urls:
             ids.append(upload_image_to_mastodon(url, mastodon))
-        post_text = str(title) + "\n" + "crosposted from https://instagram.com/"+fetched_user # creating post text
+        BIBLIOGRAM_INSTANCES = ['https://bibliogram.pussthecat.org/', 'https://bibliogram.froth.zone/']
+        bibliogram_instance = BIBLIOGRAM_INSTANCES[random.randint(0, len(BIBLIOGRAM_INSTANCES)-1)]
+        post_text = str(title) + "\ncrossposted from " + bibliogram_instance + 'u/' + fetched_user # creating post text
         post_text = post_text[0:1000]
         if(ids):
             print(ids)
